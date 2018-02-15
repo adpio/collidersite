@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block content %}
+
+<!-- Begin Tech industries -->
+        <section id="work" class="section-padding-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 section-title text-center">
+                        <h2>{{ page.title }}</h2>
+                        <span class="section-divider mb15"></span>
+                        <p class="mb30 scaleReveal">{{ page.introduction}}</p>
+                    </div><!-- /.column -->
+                </div><!-- /.row -->
+                <div class="row">
+                    <div class="col-xs-12 text-center mb50">
+                        <!-- Filter Buttons -->
+                        <button class="filter btn btn-default btn-category btn-lg" data-filter="all">All</button>
+
+                        {% for tag in page.get_child_tags %}
+                        <button class="filter btn btn-default btn-category btn-lg" data-filter=".tag-id-{{ tag.id }}">{{tag.name}}</button>
+                        {% endfor %}
+                        <!-- Sort Buttons -->
+        <!--                    <button class="sort btn btn-default btn-sort btn-lg" data-sort="my-order:asc"><span class="ion-ios-plus-empty"></span></button>
+            <button class="sort btn btn-default btn-sort btn-lg" data-sort="my-order:desc"><span class="ion-ios-minus-empty"></span></button> -->
+        </div><!-- /.column -->
+    </div><!-- /.row -->
+    <div id="thework">
+
+
+            {% for industry in industries %}
+
+            <!-- Item: {{name}} -->
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 portfolio-box no-padding mix {% for tag in industry.get_tags %}tag-id-{{ tag.id }} {%endfor%}" data-my-order="1">
+                <a href="{% pageurl industry %}">
+                {% image industry.image fill-600x600-c100 as image %}
+                <div class="portfolio-image-holder"><img src="{{ image.url }}" alt="{{ image.alt }}" class="img-responsive portfolio-image"></div>
+                <span class="portfolio-badge badge">{{industry.title}}</span>
+                <span class="portfolio-hover">
+                    <span>
+                        <span class="project-title no-margin-bottom mt10">{{industry.introduction}}</span>
+                        <button type="button" class="btn btn-default mt10" >Case Studies & More</button>
+
+                    </span>
+                </span>
+
+            </a>
+            </div><!-- /.column -->
+            
+            {% endfor %}
+      
+
+
+
+    </div><!-- /.row -->
+</div><!-- /.container -->
+</section><!-- /.section -->
+<!-- End Tech industries -->
+
+
+{% endblock content %}
+

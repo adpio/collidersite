@@ -1,0 +1,48 @@
+{% load wagtailimages_tags %}
+
+	<!-- Begin Services -->
+	<section id="services" class="background2 section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 section-title text-center">
+					<h2>{{ value.title }}</h2>
+					<span class="section-divider"></span>
+				</div><!-- /.column -->
+			</div><!-- /.row -->
+
+			{% for service in value.services %}
+
+			<div class="row">
+				<!-- Item {{ forloop.counter }} -->
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<div class="services-box leftReveal">
+						<span class="{{ service.icon }} services-icon"></span>
+						<h3 class="service-name">{{ forloop.counter }}. {{ service.title }}</h3>
+						<p class="text-small">{{ service.subtitle }}</p>
+						<button type="button" class="btn btn-default mt10" data-toggle="modal" data-target="#item{{ forloop.counter }}-services">Info</button>
+					</div>
+				</div><!-- /.column -->	
+			    <!-- Item {{ forloop.counter }} Modal -->
+				<div class="modal fade" id="item{{ forloop.counter }}-services" tabindex="-1" role="dialog">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ion-ios-close-empty"></span>
+				                </button>
+				                <span class="{{ service.icon }} services-icon-2"></span>
+				                <h4 class="service-title">{{ service.title }}</h4>
+				            </div>
+				            <div class="modal-body">
+				                {{ service.popup_text }}
+				            </div>
+				        </div><!-- /.modal-content -->
+				    </div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+
+				{% endfor %}
+
+
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</section><!-- /.section -->
+	<!-- End Services -->

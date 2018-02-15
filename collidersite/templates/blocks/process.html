@@ -1,0 +1,40 @@
+{% load wagtailimages_tags %}
+
+
+<!-- Begin Our Process Title -->
+<div id="our-process-title" class="pt30 pb30">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h4 class="no-margin">{{ value.title }}</h4>
+			</div>
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</div><!-- /.div -->
+<!-- End Our Process Title -->
+
+<!-- Begin Our Process -->
+<div id="our-process">
+	<div class="container-fluid">
+		<div class="row">
+			{% for process in value.processes %}
+			<div class="col-sm-4 col-md-4 col-lg-4 process-box text-center pt50 pb50">
+				<div class="leftReveal">
+					<div class="process-intro">
+						<h3 class="process-number">{{ process.number }}</h3>
+						<div><span class="process-icons {{ process.icon }} rotateBottomReveal"></span></div>
+						<h2>{{ process.title }}</h2>
+					</div>
+					<div class="process-content">
+						<div><span class="process-icons {{ process.icon }}"></span></div>
+						<h2 class="mt15 mb20">{{ process.title }}</h2>
+						<p class="no-margin">{{ process.subtitle }}</p>
+					</div>
+				</div><!-- /.animation -->
+			</div><!-- /.column -->
+			{% endfor %}
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</div><!-- /.div -->
+<!-- End Our Process -->
+

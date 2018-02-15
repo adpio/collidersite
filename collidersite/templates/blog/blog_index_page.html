@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block content %}
+<section id="work" class="background1 section-padding-top">
+    <div class="container-fluid">
+        
+        
+        <div class="row">
+            <div class="col-xs-12 section-title text-center">
+                {% if tag %}
+                <h2>Viewing all blog posts by <small>{{ tag }}</small></h2>
+                <span class="section-divider mb15"></span>
+
+                {% else %}
+                <h2>{{ page.title }}</h2>
+                <span class="section-divider mb15"></span>
+                <p class="mb30 scaleReveal">{{ page.introduction }}</p>
+                {% endif %}
+            </div><!-- /.column -->
+        </div><!-- /.row -->
+        
+
+        <div class="row">
+            <div class="col-xs-12 text-center mb50">
+                <!-- Filter Buttons -->
+                {% if page.get_child_tags %}
+                    {% for tag in page.get_child_tags %}
+                    <a href="{{ tag.url }}" class="filter btn btn-default btn-category btn-lg">{{ tag }}</a>
+                    {% endfor %}
+                {% endif %}
+                
+                
+                {% if tag %}
+                    <a href="{{ tag.url }}" class="filter btn btn-default btn-category btn-lg">{{ tag }}</a>
+                {% endif %}
+            </div><!-- /.column -->
+        </div><!-- /.row -->
+ <!-- Page Content -->
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+        <!-- Blog Entries Column -->
+
+
+            {% if posts %}
+                {% for blog in posts %}
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            {% image blog.image fill-900x300-c50 as image %}
+            <a href="{{ blog.url }}"><img class="card-img-top" src="{{ image.url }}" alt="{{ image.alt }}"></a>
+            <div class="card-body">
+              <h2 class="card-title">{{ blog.title }}</h2>
+              <p class="card-text">{{ blog.introduction|truncatewords:45 }}</p>
+              
+            </div>
+            <div class="card-footer text-muted">
+
+                {% for author in blog.authors %}
+                    by <a href="{{ author.url }}">{{ author }}p</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                <a href="{{ blog.url }}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+          </div>
+                {% endfor %}
+            {% endif %}
+
+
+    </div>
+      </div>
+      <!-- /.row -->
+
+
+
+{% endblock content %}

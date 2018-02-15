@@ -1,0 +1,71 @@
+{% load navigation_tags static wagtailuserbar %}
+
+{% block head %}
+    {% include "includes/head.html" %}
+    {% block head-extra %}
+    {% endblock head-extra %}
+{% endblock head %}
+
+<body class="royal_preloader" data-spy="scroll" data-target=".navbar" data-offset="70">
+<nav>
+{% wagtailuserbar %}
+
+{% block header %}
+    {# Header contains the main_navigation block #}
+    {% include "includes/header.html" with parent=site_root calling_page=self %}
+{% endblock header %}
+
+
+
+
+{% if messages %}
+    {% block messages %}
+        {% include "includes/messages.html" %}
+    {% endblock messages %}
+{% endif %}
+
+
+    {% block breadcrumbs %}
+        {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
+        {% breadcrumbs %}
+    {% endblock breadcrumbs %}
+
+</nav>
+
+    {% block content %}
+    {% endblock content %}
+
+
+
+
+    <!-- Footer -->
+    <footer>
+        {% include "includes/footer.html" %}
+    </footer>
+
+{% block footer-extra %}{% endblock %}
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+    <script type="text/javascript" src="{% static 'js/jquery.mixitup.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/form-validator.min.js' %}"></script>  
+    <script type="text/javascript" src="{% static 'js/jquery.inview.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/scrollreveal.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+
+    <script type="text/javascript" src="{% static 'js/jquery.countTo.js' %}"></script> 
+<script type="text/javascript">
+    /* ---- Counter (our count) ---- */
+
+
+    $('#ourcount').one('inview', function(event, isInView) {
+        if (isInView) {
+            $('.timer').countTo({speed: 3000});
+        }
+    });
+</script>
+</body>
+
+</html>

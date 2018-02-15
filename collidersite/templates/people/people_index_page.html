@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags %}
+
+{% block content %}
+
+<!-- Begin Network -->
+<section id="network" class="background2 section-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 section-title text-center">
+				<h2>{{ page.title }}</h2>
+				<span class="section-divider"></span>
+				<p class="no-margin">{{ page.introduction }}</p>
+			</div><!-- /.column -->
+		</div><!-- /.row -->
+
+		<div id="thenetwork">
+			<h3 class="heading-1 mb20">Innovation Directors</h3>
+			<p>{{ page.introduction_directors }}</p>
+			<div class="row">	
+			{% for person in people %}
+				{% if person.person_type == "D" %}
+
+
+				<!-- Item {{person.id}} -->
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt30">
+					<div class="services-box leftReveal" id="{{id}}">
+						<a href="{{ person.location.url }}"><span class="services-badge badge">{{person.location}}</span></a>
+						{% image person.image fill-100x100-c100 as image %}
+						<a href="{{ person.url }}"><img src="{{image.url}}" class="collider-profile" alt="{{person.id}}"></a>
+						<h3 class="service-name">{{person.title}}</h3>
+						<p class="text-small"></p>
+					</div>
+				</div>
+				<!-- /.column -->	
+				{% endif %}
+			{% endfor %}
+			</div>
+			<br><br>
+
+
+			<h3 class="heading-1 mb20">Innovation Advisors</h3>
+			<p>{{ page.introduction_advisors }}</p>
+			<div class="row">
+			{% for person in people %}
+				{% if person.person_type == "A" %}
+
+
+				<!-- Item {{person.id}} -->
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt30">
+					<div class="services-box leftReveal" id="{{id}}">
+						<a href="{{ person.location.url }}"><span class="services-badge badge">{{person.location}}</span></a>
+						{% image person.image fill-100x100-c100 as image %}
+						<a href="{{ person.url }}"><img src="{{image.url}}" class="collider-profile" alt="{{person.id}}"></a>
+						<h3 class="service-name">{{person.title}}</h3>
+						<p class="text-small"></p>
+					</div>
+				</div>
+				<!-- /.column -->	
+				{% endif %}
+			{% endfor %}
+			</div>
+			<br><br>
+
+			<h3 class="heading-1 mb20">Innovation Collider Team</h3>
+			<p>{{ page.introduction_team }}</p>
+			<div class="row">
+			{% for person in people %}
+				{% if person.person_type == "T" %}
+
+
+				<!-- Item {{person.id}} -->
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt30">
+					<div class="services-box leftReveal" id="{{id}}">
+						<a href="{{ person.location.url }}"><span class="services-badge badge">{{person.location}}</span></a>
+						{% image person.image fill-100x100-c100 as image %}
+						<a href="{{ person.url }}"><img src="{{image.url}}" class="collider-profile" alt="{{person.id}}"></a>
+						<h3 class="service-name">{{person.title}}</h3>
+						<p class="text-small"></p>
+					</div>
+				</div>
+				<!-- /.column -->	
+				{% endif %}
+			{% endfor %}
+			</div>
+
+		</div>
+	</div><!-- /.container -->
+</section><!-- /.section -->
+<!-- End Network -->
+{% endblock %}

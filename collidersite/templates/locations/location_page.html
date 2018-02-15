@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags navigation_tags %}
+
+{% block head-extra %}
+    <style>
+        /* Following two selectors needed for Google map embed */
+        #map {
+            height: 100%;
+        }
+    </style>
+{% endblock head-extra %}
+
+{% block content %}
+
+
+    {% image self.image fill-1920x1024 as hero_img %}
+        {% include "base/include/header-hero.html" %}
+
+
+    <div class="container" id="first-element">
+        <div class="row">
+            <div class="col-md-8">
+                {% if page.introduction %}
+                    <p class="intro">{{ page.introduction }}</p>
+                {% endif %}
+
+                {{ page.body }}
+
+                {% for person in page.get_people %}
+
+                {{ person.title }}
+                {% endfor %}
+                {% if page.get_tags %}
+                    Tagged with:<br />
+                    {% for tag in page.get_tags  %}
+                        <a href="{{ tag.url }}" class="btn btn-sm">{{ tag }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock content %}

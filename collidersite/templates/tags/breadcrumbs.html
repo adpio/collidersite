@@ -1,0 +1,31 @@
+{% load wagtailcore_tags %}
+
+<!-- Breadcrumbs -->
+{% if ancestors %}
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Page Title -->
+      <div class="hidden-xs col-sm-6">
+        <h1>{{ last_ancestor }}</h1>
+      </div>
+
+      <!-- Breadcrumbs -->
+      <div class="col-xs-12 col-sm-6 text-right">
+        
+        <ol class="breadcrumb">
+          <li><span class="ion-home breadcrumb-home"></span><a href="/">Home</a></li>
+          {% for ancestor in ancestors|slice:"1:" %}
+           {% if forloop.last %}
+          <li>{{ ancestor }}</li>
+          {% else %}
+          <li><a href="{% pageurl ancestor %}" aria-level="{% cycle 1 2 3 4 5 %}">{{ ancestor }}</a></li>
+          {% endif %}
+          {% endfor %}
+        </ol>
+        
+      </div><!-- /column --> 
+    </div><!-- /row -->  
+  </div><!-- /container -->  
+</div>
+{% endif %}

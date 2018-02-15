@@ -1,0 +1,64 @@
+{% load wagtailcore_tags %}
+
+
+<section id="contact" class="background2 section-padding">
+    <div class="container">
+        <div class="row mb30">
+            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 section-title text-center">
+                <h2>{{ value.form.name }}</h2>
+                <span class="section-divider"></span>
+            </div><!-- /.column -->
+        </div><!-- /.row -->
+
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 mt30-xs">
+
+
+            <form action="{{ value.form_action }}" method="POST" role="form" id="id_streamforms_{{ value.form.initial.form_id }}" novalidate>
+            
+            {% for hidden in form.hidden_fields %}{{ hidden }}
+            {% csrf_token %}
+            {% endfor %}
+
+                {% if value.form.subject.errors %}
+                    <ol role="alertdialog">
+                    {% for error in form.subject.errors %}
+                        <li role="alert"><strong>{{ error|escape }}</strong></li>
+                    {% endfor %}
+                    </ol>
+                {% endif %}
+
+                {% for field in form.visible_fields %}
+                    <div class="fieldWrapper" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+                        <div class="form-group">
+                            <div class="controls">
+
+                                {% if field.name == "message" %}
+
+
+
+                                <textarea class="form-control" name="{{ field.name }}" id="{{ field.html_name }}" placeholder="{{ field.label }}" required="" rows="5">{% if field.value %}{{ field.value }}{% endif %}</textarea>
+
+                                {% else %}
+
+                                <input class="form-control" name="{{ field.html_name }}" id="{{ field.html_name }}" placeholder="{{ field.label }}" type="{{ field.field.widget.input_type }}" {% if field.value %}value="{{ field.value }}"{% endif %}>
+
+                                {% endif %}
+
+                        
+                            {% if field.help_text and field.errors %}
+                                <span class="label label-danger">{{ field.help_text|safe }}</span>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+                <div class="col-sm-6 text-right">
+                                <input type="submit" class="btn btn-default btn-lg" value="Say Hello">
+                </div><!-- /.column -->
+            </form>
+        </div>
+    </div>
+</div>

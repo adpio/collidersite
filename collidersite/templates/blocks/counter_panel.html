@@ -1,0 +1,33 @@
+{% load wagtailimages_tags %}
+{% load static %}
+
+	<!-- Begin Our Count -->
+	<section id="ourcount" class="section-padding parallax-window our-count" data-parallax="scroll" data-image-src="{{ value.image.url }}">
+		<div class="container">
+			<div class="row mb30">
+				<div class="section-title col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3 text-center">
+					<h2>{{ value.title }}</h2>
+					<span class="section-divider mb15"></span>
+					<p class="no-margin">{{ value.subtitle }}</p>
+				</div><!-- /.column -->
+			</div><!-- /.row -->
+			<div class="row">
+				{% for counter in value.counters %}
+				<div class="col-sm-6 col-md-3 item leftReveal">
+					<div class="circle-hold">
+                        <i class="{{ counter.icon }}"></i>
+                    </div>
+                    <h2 class="timer mb5" data-from="1" data-to="{{ counter.finish }}" data-refresh-interval="20">1</h2>
+                    <p class="no-margin">{{ counter.text }}</p>
+				</div><!-- /.column -->
+				{% endfor %}
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</section><!-- /.section -->
+	<!-- End Our Count -->
+
+
+
+{% block footer-extra %} 
+
+{% endblock %}

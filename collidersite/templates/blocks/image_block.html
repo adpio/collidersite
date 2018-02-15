@@ -1,0 +1,7 @@
+{% load wagtailimages_tags %}
+<div class="col-md-8 pull-left">
+	<figure>
+	    {% image self.image fill-1920x1080 class="img-responsive" %}
+	    <small><figcaption>{{ self.caption }} - {{ self.attribution }}</figcaption></small>
+	</figure>
+</div>

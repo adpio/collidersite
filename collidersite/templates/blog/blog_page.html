@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load navigation_tags wagtailimages_tags %}
+
+{% block content %}
+
+    {% image self.image fill-1920x600 as hero_img %}
+        {% include "base/include/header-hero.html" %}
+
+
+<div class="container background1" id="first-element">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="col-sm-8 mt20-xs rightReveal">
+                {% if page.introduction %}
+                    <h5 class="heading-1 mb20">Introduction</h5>
+                    <p>{{ page.introduction }}</p>
+                {% endif %}
+            </div>
+            <div class="col-sm-4 leftReveal">
+                {% if page.authors %}
+                <h5 class="heading-1 mb20">{% if page.date_published %}{{ page.date_published }}{% endif %} By</h5>
+                    <div class="blog-avatars">
+                        {% for author in page.authors %}
+                            <div class="author">{% image author.image fill-50x50-c100 class="blog-avatar" %}
+                                {{ author.first_name }} {{ author.last_name }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if page.get_tags %}
+                <br>
+                <h5 class="heading-1 mb20">Tagged with</h5><br />
+                    {% for tag in page.get_tags  %}
+                        <a href="{{ tag.url }}" class="label label-primary">{{ tag }}</a>
+                    {% endfor %}
+                {% endif %}
+                
+            </div><!-- /.column -->
+        </div>
+    </div>
+    <div class="row">
+        <div id="blog-content" class="lead col-lg-8 col-lg-offset-2">
+            {{ page.body }}
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block content %}
+
+<section id="locations" class="background1">
+        <div class="container">
+            <div class="row">
+                <!-- Thumbnails w Popup image -->
+                {% for location in locations %}
+                <div id="location-id-{{location.id}}" class="col-sm-2 scaleReveal">
+                    <a href="{{ location.url }}"><h2>{{ location.title }}</h2></a>
+                    {% image location.image fill-180x180-c75 as image %}
+                    <a href="{{ location.url }}" class="thumbnail no-margin">
+                        <img src="{{ image.url }}" alt="{{ image.alt }}">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+    </div><!-- /.container -->
+</section>
+
+<!-- Begin Map -->
+<div id="map"></div>
+<!-- End Map -->
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArLNT3t4qsJEBmR0R9P_6ueLIQz0Jvt1M&callback=initMap" async defer></script>
+<script type="text/javascript">
+    /* ---- Google Maps ---- */
+
+    function smoothZoom (map, max, cnt) {
+        if (cnt == max) {
+            return;
+        }
+        else if (cnt > max) {
+            z = google.maps.event.addListener(map, 'zoom_changed', function(event){
+                google.maps.event.removeListener(z);
+                smoothZoom(map, max, cnt - 1);
+            });
+            setTimeout(function(){map.setZoom(cnt)}, 120);
+        }
+        else {
+            z = google.maps.event.addListener(map, 'zoom_changed', function(event){
+                google.maps.event.removeListener(z);
+                smoothZoom(map, max, cnt + 1);
+            });
+            setTimeout(function(){map.setZoom(cnt)}, 120); // 80ms is what I found to work well on my system -- it might not work well on all systems
+        }
+    }
+
+
+    function initMap() {
+        var mapOptions = {
+            zoom: 2,
+            zoomControl: false,
+            scaleControl: false,
+            scrollwheel: false,
+            disableDoubleClickZoom: true,
+            center: new google.maps.LatLng(40.6700, -73.9400), // New York
+            styles: [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
+        };
+        var mapElement = document.getElementById('map');
+        var map = new google.maps.Map(mapElement, mapOptions);
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(40.6700, -73.9400),
+            map: map,
+            title: 'Our Office!'
+        });
+        var world_geometry = new google.maps.FusionTablesLayer({
+          query: {
+            select: 'geometry',
+            from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
+            where: "Name IN ({% for location in locations %}{% if not forloop.first %}, {% endif %}'{{location.country}}'{% endfor %})"
+          },
+          map: map,
+          suppressInfoWindows: false
+        });
+        {% for location in locations %}
+        $("#location-id-{{location.id}}")
+        .mouseover(function() {
+            var l = "{{ location.lat_long }}"
+          map.panTo({lat: parseFloat(l.split(', ')[0]), lng: parseFloat(l.split(', ')[1])});
+          smoothZoom(map, 4, map.getZoom());
+        })
+        .mouseout(function() {
+
+        });
+        {% endfor %}
+    }
+ 
+</script>
+
+{% endblock content %}

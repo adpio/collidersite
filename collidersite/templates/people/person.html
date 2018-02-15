@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags %}
+
+{% block content %}
+
+<!-- Start Profile -->
+	<section id="profile" class="background2 section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 section-title text-center">
+					<h2>{{ page.title }}</h2>
+					<span class="section-divider"></span>
+				</div><!-- /.column -->
+			</div><!-- /.row -->
+			<div class="row">
+				<div class="col-sm-4">
+					{% image page.image width-500 class="img-responsive" %}
+					<div class="profile-box">
+						<ul class="list-unstyled">
+							<li><strong>Name:</strong> {{ page.title }}</li>
+							<li><strong>Location:</strong> <a href="{{ page.location.url }}">{{ page.location }}</a></li>
+							<li><strong>Position:</strong> {{ page.job_title }}</li>
+							<li><strong>LinkedIn:</strong> <a href="{{ page.linkedin_link }}"><i class="ion-social-linkedin-outline"> click here</i></a></li>
+						</ul>
+					</div>
+				</div><!-- column -->
+				<div class="col-sm-8 mt30-xs">
+					<h5 class="heading-1 mb20">Intro</h5>
+					<h3 class="mb15 no-margin-top">{{ page.intro_subtitle }}</h3>
+					<p class="text-small text-switch">{{ page.intro_paragraph }}</p>
+					<span class="divider"></span>
+					<p class="text-small">{{ page.main_paragraph }}</p>
+					<h5 class="heading-1 mt20 mb20">Skills</h5>
+					<div class="progress">
+						<div class="progress-bar text-left" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+							Development
+						</div>
+					</div>
+					<div class="progress">
+						<div class="progress-bar text-left" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+							Design
+						</div>
+					</div>
+					<div class="progress">
+						<div class="progress-bar text-left" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+							Icon Design
+						</div>
+					</div>
+					<div class="progress-meter">
+						<div class="meter meter-left" style="width: 30%;"><span class="meter-text">Beginner</span></div>
+						<div class="meter meter-left" style="width: 20%;"><span class="meter-text">Intermediate</span></div>
+		    			<div class="meter meter-right" style="width: 20%;"><span class="meter-text">Professional</span></div>
+						<div class="meter meter-right" style="width: 30%;"><span class="meter-text">Master</span></div>
+					</div>
+
+				</div><!-- /.column -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</section>
+	<!-- End Profile -->
+
+{% endblock %}

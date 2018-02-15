@@ -1,0 +1,22 @@
+.search-icon {
+  display: block;
+  display: inline-block;
+  height: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+}
+.search-icon svg {
+  fill: #d4566b;
+  height: 20px;
+  width: 20px;
+}
+
+#blog-content{
+  padding-top: 30px;
+}
+
+#blog-content p{
+  font-family: Georgia, serif;
+}

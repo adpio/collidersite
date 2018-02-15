@@ -1,0 +1,17 @@
+{
+  "name": "Innovation Collider Site",
+  "description": "Wagtailcollidersite",
+  "repository": "https://github.com/wagtail/collidersite",
+  "keywords": ["wagtail", "django"],
+  "env": {
+    "DJANGO_DEBUG": "off",
+    "DJANGO_SETTINGS_MODULE": "collidersite.settings.production",
+    "DJANGO_SECURE_SSL_REDIRECT": "on"
+  },
+  "scripts": {
+    "postdeploy": "django-admin.py migrate && django-admin.py load_initial_data && echo 'from wagtail.wagtailimages.models import Rendition; Rendition.objects.all().delete()' | django-admin.py shell"
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ]
+}
