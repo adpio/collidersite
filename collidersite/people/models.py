@@ -43,7 +43,7 @@ class Person(Page):
     to the database.
     https://github.com/wagtail/django-modelcluster
     """
-    PERSON_TYPE_CHOICES = (('D', 'Innovation Director'),('T', 'Innovation Team'), ('A', 'Innovation Advisor'))
+    PERSON_TYPE_CHOICES = (('D', 'Innovation Director'),('T', 'Innovation Team'), ('A', 'Innovation Advisor'), ('M', 'Mentor'))
 
     first_name = models.CharField("First name", max_length=254, blank=True)
     last_name = models.CharField("Last name", max_length=254, blank=True)

@@ -5,6 +5,7 @@ from wagtail.wagtailcore.blocks import (
 )
 
 from wagtailstreamforms.blocks import WagtailFormBlock
+from collidersite.people.models import Person
 
 class ImageBlock(StructBlock):
     """
@@ -98,6 +99,17 @@ class ServicePanel(StructBlock):
     class Meta:
         icon = "fa-quote-left"
         template = "blocks/services_panel.html"
+
+class TeamBlock(StructBlock):
+    title = CharBlock(help_text='Title for the team block')
+
+    @property
+    def get_team():
+        team_members = Person.objects.all().filter(person_type='T')
+
+    class Meta:
+        icon = "fa-quote-left"
+        template = "blocks/team_block.html"
 
 
 

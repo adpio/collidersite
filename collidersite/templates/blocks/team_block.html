@@ -1,0 +1,107 @@
+{% load wagtailimages_tags %}
+
+
+<!-- Begin Team -->
+<section id="team" class="background2 section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 section-title text-center">
+                <h2>Team</h2>
+                <span class="section-divider"></span>
+            </div><!-- /.column -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-sm-4 leftReveal">
+                <h5 class="heading-1 mb20">Innovation Collider</h5>
+                <h3 class="no-margin-top mb15">Business software that works</h3>
+                <p class="no-margin text-small">powered by innovation from all around the world</p>
+            </div><!-- /.column -->
+            <div class="col-sm-8 mt20-xs rightReveal">
+                <h5 class="heading-1 mb20">Who are we?</h5>
+                <p>{{ self.description }}</p>
+            </div><!-- /.column -->
+        </div><!-- /.row -->
+        <div class="row mb40">
+        {% for person in self.team_members %}
+            <!-- Item {{ person.id }} -->
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 topReveal">
+                <div class="team-member-box" id="AdamPiotrowski">
+                    <h3>{{ person.title }}</h3>
+                    <hr>
+                    <div class="team-image-wrapper">
+                        <span class="team-image-hover">
+                            <span class="team-hover-content">
+                                <!-- Social -->
+                                <span><span class="ion-android-share-alt social-icon-title"></span></span>
+                                <a href="https://twitter.com/iCollider"><span class="ion-social-twitter social-icons-light-hover mr15"></span></a>
+                                <a href="https://www.facebook.com/InnovationCollider"><span class="ion-social-facebook social-icons-light-hover mr15"></span></a>
+
+                            </span>
+                        </span>
+
+                        <img src="{{ person.image.url }}" alt="{{ person.image.alt }}" class="img-responsive img-circle team-member-img">
+                    </div>
+                    <hr>
+                    <p class="text-xs-small">
+                        {{ person.description }}
+                    </p>
+
+                </div>
+            </div><!-- /.column -->
+
+        {% endfor %}
+        </div><!-- /.row -->
+
+        <div class="row">
+
+            <div class="col-sm-12 leftReveal">
+                <h3 class="heading-1 mb20">Our Mentors</h3>
+            </div><!-- /.column -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-sm-3 leftReveal">
+                <img src="images/carlos.jpg" alt="4 Member" class="img-responsive team-member-img">
+            </div><!-- /.column -->
+            <div class="col-sm-9 mt20-xs rightReveal">
+                <h3>Carlos Garcia Pont</h3>
+                <br>
+                <p class="text-small">
+                    Carlos García Pont is professor in the Marketing Department and director of the MBA Program at IESE Business School. His work places special emphasis on the importance of alliances in understanding competitive strategy, the organizational needs of market-oriented organizations in industrial markets and subsidiary strategy in global corporations. 
+                    <br><br>
+                    He has also done work in the areas of strategic management and marketing strategy. Prof. García Pont has had extensive experience with both local and multinational organizations in his consulting activities.
+                </p>
+            </div><!-- /.column -->
+        </div><!-- /.row -->
+        <hr>
+        <div class="row">
+            <div class="col-sm-3 leftReveal">
+                <img src="images/markus.jpg" alt="4 Member" class="img-responsive team-member-img">
+            </div><!-- /.column -->
+            <div class="col-sm-9 mt20-xs rightReveal">
+                <h3>Markus Maedler</h3>
+                <br>
+                <p class="text-small">
+                    Markus earned his undergraduate degree in Germany, his MBA in Spain and his Ph.D. in Accounting at New York's Columbia University. Prior to his academic career, Dr Markus Maedler gained ten years of international work experience in banking, consulting and public administration.
+                    <br><br>
+                    His teaching has reached professionals, managers and top executives from around the globe participating in MBA, EMBA, GEMBA and open executive education programmes as well as custom programmes with corporate clients like Haniel, Rabobank and Dow Chemical. Dr Markus Maedler’s research interests focus on the intersection of accounting information and control systems with organisational design, corporate distress, turnaround and restructuring as well as risk management. 
+                </p>
+            </div><!-- /.column -->
+
+        </div><!-- /.row -->
+        <hr>
+        <div class="row">
+            <div class="col-sm-3 leftReveal">
+                <img src="images/dedo.jpg" alt="4 Member" class="img-responsive team-member-img">
+            </div><!-- /.column -->
+            <div class="col-sm-9 mt20-xs rightReveal">
+                <h3>Janusz Dedo</h3>
+                <br>
+                <p class="text-small">
+                    Mr. Janusz Dedo has been the President of the Management Board of HSBC Bank Polska S.A. since August 2005. Mr. Dedo served as the Chief Executive Officer and Country Manager of HSBC Bank Polska S.A. Mr. Dedo served as a Deputy President of the Management Board and Member of the Management Board of Bank Polska Kasa Opieki Spólka Akcyjna (Bank Pekao SA) from 1998 to 2004. He was responsible for the retail banking division. Until July 2006, he served as the President of Bank PEKAO Ukraina Ltd. He served on Global and Regional Boards of the MasterCard organisation. For many years, Mr. Dedo has been a member of the Polish Bank Association's Council and since June 2011 also the President of the association of Polish private employers of banks and financial institutions. He started his career at the Instytut Gospodarki Swiatowej (institute of world economy), assessing international commodity markets. Since June 1987, he was employed at the National Bank of Poland in the office of cooperation with the World Bank. He serves as a Member of the Supervisory Board at Budimex SA. Mr. Dedo is a graduate in economics at the Warsaw University of Life Sciences. Mr. Dedo is a U.S. government scholar at the University of Minnesota.
+                </p>
+            </div><!-- /.column -->
+
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.section -->
+<!-- End Team -->
