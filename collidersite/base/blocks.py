@@ -102,10 +102,10 @@ class ServicePanel(StructBlock):
 
 class TeamBlock(StructBlock):
     title = CharBlock(help_text='Title for the team block')
-
+    description = CharBlock(help_text='Team description')
     @property
     def get_team():
-        team_members = Person.objects.all().filter(person_type='T')
+        team_members = Person.objects.live().filter(person_type='T')
 
     class Meta:
         icon = "fa-quote-left"
